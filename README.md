@@ -1,3 +1,1 @@
-Đây sẽ là ứng dụng cho môn đồ án
-Hiện tại đây là phần Frontend cho trello
-11/8/2024: cấu hình lại từ đầu, thêm 1 folder các các file txt ghi lại kiến thức của từng bài dạy
+Đây sẽ là ứng dụng cho môn đồ án Hiện tại đây là phần Frontend cho trello update: - Làm teamwork cùng em Long K64 - Cố gắng hoàn thành FE trong tuần 19/8/2024 --> 25/8/2024
