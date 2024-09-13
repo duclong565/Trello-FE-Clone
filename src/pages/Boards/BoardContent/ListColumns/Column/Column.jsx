@@ -171,6 +171,7 @@ function Column({ column }) {
                 size="small"
                 variant="outlined"
                 autoFocus //ready to type
+                data-no-dnd="true" //prevent drag and drop when typing
                 value={newCardTitle}
                 onChange={(e) => setNewCardTitle(e.target.value)}
 
