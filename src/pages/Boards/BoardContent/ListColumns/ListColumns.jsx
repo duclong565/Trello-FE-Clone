@@ -13,6 +13,7 @@ import SearchIcon from '@mui/icons-material/Search'
 import InputAdornment from '@mui/material/InputAdornment'
 import CloseIcon from '@mui/icons-material/Close'
 
+import { toast } from 'react-toastify'
 
 function ListColumns({ columns }) {
   const [openNewColumnForm, setOpenNewColumnForm] = useState(false)
@@ -22,7 +23,7 @@ function ListColumns({ columns }) {
 
   const addNewColumn = () => {
     if (!newColumnTitle) {
-      // console.error('Column title is required')
+      toast.error('Column title is required')
       return
     }
     // console.log(newColumnTitle)
