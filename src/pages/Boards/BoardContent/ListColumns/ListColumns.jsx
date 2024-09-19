@@ -15,19 +15,27 @@ import CloseIcon from '@mui/icons-material/Close'
 
 import { toast } from 'react-toastify'
 
-function ListColumns({ columns }) {
+function ListColumns({ columns, createNewColumn, createNewCard }) {
   const [openNewColumnForm, setOpenNewColumnForm] = useState(false)
   const toggleOpenNewColumnForm = () => setOpenNewColumnForm(!openNewColumnForm)
 
   const [newColumnTitle, setNewColumnTitle] = useState('')
 
-  const addNewColumn = () => {
+  const addNewColumn = async () => {
     if (!newColumnTitle) {
       toast.error('Column title is required')
       return
     }
-    // console.log(newColumnTitle)
-    //call API to add new column
+
+    /**
+     * props function createNewColumn is in the parent component, so we need to pass newColumnData to the parent component (boards/_id.jsx) to call API
+     */
+    //Create data to call API
+    const newColumnData = {
+      title: newColumnTitle
+    }
+
+    await createNewColumn(newColumnData)
 
     //reset form and close new cloumn state
     toggleOpenNewColumnForm()
@@ -57,7 +65,7 @@ function ListColumns({ columns }) {
           return <Column key={column._id} />
         })} */}
         {columns?.map((column) => (
-          <Column key={column._id} column={column} />
+          <Column key={column._id} column={column} createNewCard={createNewCard} />
         ))}
 
         {/* Box add new column */}
@@ -109,7 +117,6 @@ function ListColumns({ columns }) {
               autoFocus //ready to type
               value={newColumnTitle}
               onChange={(e) => setNewColumnTitle(e.target.value)}
-
               sx={{
                 '& label': { color: 'white' },
                 '& input': { color: 'white' },
@@ -118,7 +125,7 @@ function ListColumns({ columns }) {
                   '& fieldset': { borderColor: 'white' },
                   '&:hover fieldset': { borderColor: 'white' },
                   '&.Mui-focused fieldset': { borderColor: 'white' },
-                }
+                },
               }}
             />
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
